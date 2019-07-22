@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
-using Microsoft.DES.DotNet.Utilities;
 using Microsoft.DSX.ProjectTemplate.Data.DTOs;
+using Microsoft.DSX.ProjectTemplate.Data.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Net.Http;

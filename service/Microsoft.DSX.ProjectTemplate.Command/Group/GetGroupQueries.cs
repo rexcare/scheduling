@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.DSX.ProjectTemplate.Data;
+using Microsoft.DSX.ProjectTemplate.Data.DTOs;
+using Microsoft.DSX.ProjectTemplate.Data.Exceptions;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.DES.DotNet.Data.Exceptions;
-using Microsoft.DES.DotNet.Extensions;
-using Microsoft.DSX.ProjectTemplate.Data;
-using Microsoft.DSX.ProjectTemplate.Data.DTOs;
-using Microsoft.EntityFrameworkCore;
 
 namespace Microsoft.DSX.ProjectTemplate.Command.Group
 {
@@ -44,7 +43,7 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Group
         // GET BY ID
         public async Task<GroupDto> Handle(GetGroupByIdQuery request, CancellationToken cancellationToken)
         {
-            if (request.GroupId.IsNullOrEmpty() || request.GroupId.IsNegative())
+            if (request.GroupId <= 0)
             {
                 throw new BadRequestException($"A valid {nameof(Data.Models.Group)} Id must be provided");
             }
@@ -52,7 +51,7 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Group
             var innerResult = await Database.Groups
                 .FindAsync(request.GroupId);
 
-            if (innerResult.IsNull())
+            if (innerResult == null)
             {
                 throw new EntityNotFoundException($"{nameof(Data.Models.Group)} with Id {request.GroupId} cannot be found");
             }

@@ -1,5 +1,5 @@
-﻿using Microsoft.DES.DotNet.Data.Exceptions;
-using Microsoft.DSX.ProjectTemplate.Command.Group;
+﻿using Microsoft.DSX.ProjectTemplate.Command.Group;
+using Microsoft.DSX.ProjectTemplate.Data.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Threading;

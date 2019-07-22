@@ -1,6 +1,6 @@
-﻿using Microsoft.DES.DotNet.Data.Exceptions;
-using Microsoft.DSX.ProjectTemplate.Command.Group;
+﻿using Microsoft.DSX.ProjectTemplate.Command.Group;
 using Microsoft.DSX.ProjectTemplate.Data.DTOs;
+using Microsoft.DSX.ProjectTemplate.Data.Exceptions;
 using Microsoft.DSX.ProjectTemplate.Data.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

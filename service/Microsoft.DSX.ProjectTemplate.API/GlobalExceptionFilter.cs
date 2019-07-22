@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.DES.DotNet.Data.Exceptions;
 using Microsoft.DSX.ProjectTemplate.Data.DTOs;
+using Microsoft.DSX.ProjectTemplate.Data.Exceptions;
 using Microsoft.Extensions.Logging;
 using System;
 

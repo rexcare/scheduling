@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.DES.DotNet.Utilities;
 using Microsoft.DSX.ProjectTemplate.Data.DTOs;
 using Microsoft.DSX.ProjectTemplate.Data.Models;
 using System;
@@ -9,8 +8,6 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Utilities
 {
     public static class SeedHelper
     {
-        private static readonly Random random = new Random();
-
         public static Group GetRandomGroup(ProjectTemplateDbContext database)
         {
             return database.Groups.OrderBy(x => Guid.NewGuid()).First();

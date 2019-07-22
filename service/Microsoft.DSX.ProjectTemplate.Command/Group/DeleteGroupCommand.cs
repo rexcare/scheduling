@@ -1,11 +1,11 @@
-﻿using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.DES.DotNet.Data.Exceptions;
 using Microsoft.DSX.ProjectTemplate.Data;
+using Microsoft.DSX.ProjectTemplate.Data.Exceptions;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Microsoft.DSX.ProjectTemplate.Command.Group
 {

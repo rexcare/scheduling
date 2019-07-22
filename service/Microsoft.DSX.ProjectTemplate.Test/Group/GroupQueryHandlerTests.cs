@@ -1,8 +1,7 @@
 ﻿using FluentAssertions;
-using Microsoft.DES.DotNet.Data.Exceptions;
-using Microsoft.DES.DotNet.Extensions;
 using Microsoft.DSX.ProjectTemplate.Command.Group;
 using Microsoft.DSX.ProjectTemplate.Data.DTOs;
+using Microsoft.DSX.ProjectTemplate.Data.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -18,7 +17,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Group
         [TestMethod]
         public async Task GetAll_Valid_Success()
         {
-            DateTime dtStart = DateTime.Now.TruncateMilliseconds();
+            DateTime dtStart = DateTime.Now;
 
             await ExecuteWithDb((db) =>
             {

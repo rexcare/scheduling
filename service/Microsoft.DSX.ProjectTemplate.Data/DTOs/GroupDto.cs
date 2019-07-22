@@ -1,6 +1,4 @@
-﻿using Microsoft.DES.DotNet.Extensions;
-
-namespace Microsoft.DSX.ProjectTemplate.Data.DTOs
+﻿namespace Microsoft.DSX.ProjectTemplate.Data.DTOs
 {
     public class GroupDto : AuditDto<int>
     {
@@ -10,7 +8,7 @@ namespace Microsoft.DSX.ProjectTemplate.Data.DTOs
 
         public override bool IsValid()
         {
-            if (Name.IsNullOrEmpty())
+            if (string.IsNullOrWhiteSpace(Name))
             {
                 ModelState.AddModelError(nameof(Name), $"{nameof(Name)} cannot be null or empty.");
             }

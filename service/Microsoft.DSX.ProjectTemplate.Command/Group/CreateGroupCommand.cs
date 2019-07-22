@@ -1,14 +1,13 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.DES.DotNet.Data.Exceptions;
-using Microsoft.DES.DotNet.Extensions;
 using Microsoft.DSX.ProjectTemplate.Data;
 using Microsoft.DSX.ProjectTemplate.Data.DTOs;
 using Microsoft.DSX.ProjectTemplate.Data.Events;
+using Microsoft.DSX.ProjectTemplate.Data.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Microsoft.DSX.ProjectTemplate.Command.Group
 {
@@ -31,7 +30,7 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Group
 
         public async Task<GroupDto> Handle(CreateGroupCommand request, CancellationToken cancellationToken)
         {
-            if (request.Group.IsNull())
+            if (request.Group == null)
             {
                 throw new BadRequestException($"A valid {nameof(Data.Models.Group)} must be provided");
             }
