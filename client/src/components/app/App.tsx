@@ -1,14 +1,22 @@
 import 'office-ui-fabric-core/dist/css/fabric.css';
 
 import { FluentCustomizations } from '@uifabric/fluent-theme';
-import { Customizer, IButtonProps, Icon, Image, initializeIcons, Nav, Text } from 'office-ui-fabric-react';
+import {
+  Customizer,
+  IButtonProps,
+  Icon,
+  Image,
+  initializeIcons,
+  Nav,
+  Text
+} from 'office-ui-fabric-react';
 import React from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 
 import msftLogo from '../../static/msftLogo.png';
 import About from '../about/About';
 import Home from '../home/Home';
-import Users from '../users/Users';
+import Groups from '../groups/Groups';
 import styles from './App.module.scss';
 
 initializeIcons();
@@ -42,9 +50,9 @@ const App: React.FC = () => {
                         key: 'about'
                       },
                       {
-                        name: 'Users',
-                        url: '/users/',
-                        key: 'users'
+                        name: 'Groups',
+                        url: '/groups/',
+                        key: 'groups'
                       }
                     ]
                   }
@@ -54,7 +62,7 @@ const App: React.FC = () => {
             <div className="ms-Grid-col ms-sm12 ms-lg8 msxl-10">
               <Route path="/" exact component={Home} />
               <Route path="/about/" component={About} />
-              <Route path="/users/" component={Users} />
+              <Route path="/groups/" component={Groups} />
             </div>
           </div>
         </div>
