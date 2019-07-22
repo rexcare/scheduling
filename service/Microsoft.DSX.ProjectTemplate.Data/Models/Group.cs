@@ -1,0 +1,18 @@
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace Microsoft.DSX.ProjectTemplate.Data.Models
+{
+    public class Group : AuditModel<int>
+    {
+        [Required]
+        [MaxLength(512)]
+        public string Name { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public virtual ICollection<Project> Projects { get; set; } = new HashSet<Project>();
+
+        public virtual Library DefaultLibrary { get; set; }
+    }
+}

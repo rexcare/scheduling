@@ -1,3 +1,39 @@
+# Overview
+Web app template by [DSX](https://deviceswiki.com/wiki/DSX)
+
+# Frontend Architecture
+- React with TypeScript
+- nswag-generated DTOs and client for backend API
+
+# Backend Architecture
+- ASP.NET Core 2.2
+- Uses MediatR nuget to enable command-query separation and domain events
+- Uses AutoMapper nuget to handle entity-to-DTO mapping
+- Unit and integration tests using Moq, MSTest, and Mvc.Testing
+
+# How to run locally
+This setup is for Windows users but this solution will work cross-platform (Mac/Linux).
+1. Install Visual Studio 2019 Enterprise (for backend).
+2. Install .NET Core SDK 2.2 for VS2019.
+3. Install Visual Studio Code (for frontend).
+4. Open the `.sln` file and wait for nuget package restore.
+5. Open **Test Explorer** and click "Run All" to execute test suite.
+6. Press F5 button on your keyboard to launch the backend in debugging mode and your browser should open `https://localhost:5001/swagger`.
+7. Open `client` folder in VS Code.
+8. In the **Terminal**, execute these 2 commands:
+```
+npm install
+npm start
+```
+9. The webpack dev server should host the frontend and your browser should open `http://localhost:3000`.
+
+# Adding an Entity Framework Core migration
+1. Open a command prompt in the **Microsoft.DSX.ProjectTemplate.Data** folder.
+2. `dotnet ef migrations add <NAME OF MIGRATION>`
+
+# Removing the latest Entity Framework Core migration
+1. Open a command prompt in the **Microsoft.DSX.ProjectTemplate.Data** folder.
+2. `dotnet ef migrations remove`
 
 # Contributing
 

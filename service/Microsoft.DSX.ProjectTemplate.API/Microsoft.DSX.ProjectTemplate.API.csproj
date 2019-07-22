@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <UserSecretsId>95966057-82fe-4a76-8bc9-c168781ea2f9</UserSecretsId>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="7.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.0.4" />
+    <PackageReference Include="NSwag.MSBuild" Version="13.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.DSX.ProjectTemplate.Command\Microsoft.DSX.ProjectTemplate.Command.csproj" />
+    <ProjectReference Include="..\Microsoft.DSX.ProjectTemplate.Data\Microsoft.DSX.ProjectTemplate.Data.csproj" />
+  </ItemGroup>
+
+  <!-- https://github.com/RicoSuter/NSwag/wiki/Assembly-loading#net-core -->
+  <!-- build TypeScript client and DTOs for this backend -->
+  <Target Name="NSwag" AfterTargets="Build">
+    <Copy SourceFiles="@(Reference)" DestinationFolder="$(OutDir)References" />
+    <Exec Command="$(NSwagExe_Core22) run nswag.json /variables:OutDir=$(OutDir)" />
+    <RemoveDir Directories="$(OutDir)References" />
+  </Target>
+
+</Project>
