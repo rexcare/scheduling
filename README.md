@@ -18,7 +18,7 @@ This setup is for Windows users but this solution will work cross-platform (Mac/
 3. Install Visual Studio Code (for frontend).
 4. Open the `.sln` file and wait for nuget package restore.
 5. Open **Test Explorer** and click "Run All" to execute test suite.
-6. Press F5 button on your keyboard to launch the backend in debugging mode and your browser should open `https://localhost:5001/swagger`.
+6. Press F5 button on your keyboard to launch the backend in debugging mode and your browser should open `https://localhost:44345/swagger`.
 7. Open `client` folder in VS Code.
 8. In the **Terminal**, execute these 2 commands:
 ```
