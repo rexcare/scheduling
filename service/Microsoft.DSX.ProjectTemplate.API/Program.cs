@@ -4,34 +4,44 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.DSX.ProjectTemplate.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace Microsoft.DSX.ProjectTemplate.API
 {
     public class Program
     {
+       
         public static void Main(string[] args)
         {
-            var webHost = CreateWebHostBuilder(args).Build();
-            var logger = webHost.Services.GetRequiredService<ILogger<Program>>();
+
+            //var webHost = CreateWebHostBuilder(args).Build();
+
+            IHost host = CreateHostBuilder(args).Build();
+            var logger = host.Services.GetRequiredService<ILogger<Program>>();
 
             try
             {
-                RunDatabaseMigrations(webHost, logger);
-                webHost.Run();
+                RunDatabaseMigrations(host, logger);
+                host.Run();
             }
             catch (Exception ex)
             {
                 logger.LogCritical(ex, ex.Message);
                 throw;
             }
+           
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                 .ConfigureWebHostDefaults(webBuilder =>
+                 {
+                     webBuilder.UseStartup<Startup>();
+                 });
 
-        private static void RunDatabaseMigrations(IWebHost host, ILogger logger)
+
+        private static void RunDatabaseMigrations(IHost host, ILogger logger)
         {
             logger.LogInformation($"Running database migrations");
             using (var serviceScope = host.Services.CreateScope())

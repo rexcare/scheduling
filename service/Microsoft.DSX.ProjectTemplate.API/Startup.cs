@@ -10,14 +10,14 @@ using Microsoft.DSX.ProjectTemplate.Data.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NSwag.AspNetCore;
+using Microsoft.Extensions.Hosting;
 
 [assembly: ApiConventionType(typeof(DefaultApiConventions))]
 namespace Microsoft.DSX.ProjectTemplate.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
+        public Startup(IConfiguration configuration, IHostEnvironment hostingEnvironment)
         {
             Configuration = configuration;
             HostingEnvironment = hostingEnvironment;
@@ -26,7 +26,7 @@ namespace Microsoft.DSX.ProjectTemplate.API
         readonly string CorsPolicy = "CorsPolicy";
 
         public IConfiguration Configuration { get; }
-        public IHostingEnvironment HostingEnvironment { get; }
+        public IHostEnvironment HostingEnvironment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -39,14 +39,9 @@ namespace Microsoft.DSX.ProjectTemplate.API
                     options.AddPolicy(CorsPolicy,
                         builder => builder.AllowAnyOrigin()
                         .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
+                        .AllowAnyHeader());
                 })
-                .AddMvc(options =>
-                {
-                    options.Filters.Add(typeof(GlobalExceptionFilter));
-                })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                .AddControllers();
 
             // Register Entity Framework Core
             ConfigureDatabase(services);
@@ -87,7 +82,7 @@ namespace Microsoft.DSX.ProjectTemplate.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -100,7 +95,7 @@ namespace Microsoft.DSX.ProjectTemplate.API
             }
 
             // Register the Swagger generator and the Swagger UI middlewares
-            app.UseSwagger();
+            app.UseOpenApi();
             app.UseSwaggerUi3();
 
             if (!env.IsEnvironment("Test"))
@@ -108,9 +103,16 @@ namespace Microsoft.DSX.ProjectTemplate.API
                 app.UseHttpsRedirection();
             }
 
+            app.UseRouting();
+
             app.UseCors(CorsPolicy);
 
-            app.UseMvc();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿{
-  "runtime": "NetCore22",
+  "runtime": "NetCore31",
   "defaultVariables": null,
   "documentGenerator": {
     "aspNetCoreToOpenApi": {
       "project": "Microsoft.DSX.ProjectTemplate.API.csproj",
       "msBuildProjectExtensionsPath": null,
-      "configuration": "Debug",
+      "configuration": "$(Configuration)",
       "runtime": null,
-      "targetFramework": "netcoreapp2.2",
+      "targetFramework": "netcoreapp3.1",
       "noBuild": true,
       "verbose": true,
       "workingDirectory": null,
