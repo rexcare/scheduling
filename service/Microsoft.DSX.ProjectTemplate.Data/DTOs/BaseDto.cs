@@ -8,8 +8,6 @@ namespace Microsoft.DSX.ProjectTemplate.Data.DTOs
     {
         public TType Id { get; set; }
 
-        protected ModelStateDictionary ModelState { get; } = new ModelStateDictionary();
-
         public abstract IEnumerable<ValidationResult> Validate(ValidationContext validationContext);
     }
 }

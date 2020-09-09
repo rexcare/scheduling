@@ -6,9 +6,9 @@ import { authContext } from './adalConfig';
 const DO_NOT_LOGIN = true;
 
 runWithAdal(
-  authContext,
-  () => {
-    require('./appIndex/appIndex.tsx');
-  },
-  DO_NOT_LOGIN
+    authContext,
+    () => {
+        require('./app/App.tsx');
+    },
+    DO_NOT_LOGIN
 );

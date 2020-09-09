@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.DSX.ProjectTemplate.Data;
 using Microsoft.DSX.ProjectTemplate.Data.Abstractions;
 using Microsoft.DSX.ProjectTemplate.Data.Services;
-using Microsoft.DSX.ProjectTemplate.Data.Utilities;
+using Microsoft.DSX.ProjectTemplate.Test.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
@@ -80,7 +80,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Unit
             using (var db = new ProjectTemplateDbContext(CreateInMemoryContextOptions()))
             {
                 // seed test data
-                (new TestDataSeeder(db, LoggerFactory.CreateLogger<TestDataSeeder>())).SeedTestData();
+                new TestDataSeeder(db, LoggerFactory.CreateLogger<TestDataSeeder>()).SeedTestData();
 
                 // execute our test
                 var result = await func(db);

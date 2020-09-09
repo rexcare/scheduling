@@ -109,7 +109,7 @@
       "enumNameGeneratorType": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "../../client/src/generated/backend.ts"
+      "output": "../../client/src/app/generated/backend.ts"
     }
   }
 }

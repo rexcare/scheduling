@@ -8,6 +8,6 @@ namespace Microsoft.DSX.ProjectTemplate.Data.Models
         [MaxLength(Constants.MaximumLengths.StringColumn)]
         public string DisplayName { get; set; }
 
-        public Dictionary<string, string> Metadata { get; set; }
+        public IDictionary<string, string> Metadata { get; set; }
     }
 }

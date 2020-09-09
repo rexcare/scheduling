@@ -2,49 +2,58 @@
 
 Web app template by the Microsoft Devices Software Experiences team.
 
-# Updates
+# Client (front-end)
 
-# Frontend Architecture
+- [React](https://reactjs.org/docs/getting-started.html) with [Redux](https://redux.js.org/introduction/getting-started) and [TypeScript](https://www.typescriptlang.org/docs)
+- [Microsoft Fabric UI](https://developer.microsoft.com/en-us/fluentui#/get-started)
+- [NSwag](https://github.com/RicoSuter/NSwag) generated DTOs and client for back-end API
+- [ADAL.js](https://github.com/AzureAD/azure-activedirectory-library-for-js)
 
-- React with TypeScript
-- nswag-generated DTOs and client for backend API
+# Service (back-end)
 
-# Backend Architecture
-
-- ASP.NET Core 3.1
-- Uses MediatR as CQRS implementation
-- Uses AutoMapper to handle entity-to-DTO mapping
-- Unit and integration tests using Moq, MSTest, and Mvc.Testing
+- [ASP.NET Core 3.1](https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/intro)
+- [MediatR](https://github.com/jbogard/MediatR) as [CQRS](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs) implementation
+- [AutoMapper](https://github.com/AutoMapper/AutoMapper) handling Entity-to-DTO mapping
+- Unit and integration tests using [Moq](https://github.com/moq/moq4) and [MSTest](https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest)
+- [Swagger UI](https://github.com/swagger-api/swagger-ui)
 
 # How to run locally
 
-This setup is for Windows users but this solution will work cross-platform (Mac/Linux).
-
-1. Install Visual Studio 2019 Enterprise (for backend).
-2. Install .NET Core SDK 3.1 for VS2019.
-3. Install Visual Studio Code (for frontend).
-4. Open the `.sln` file and wait for nuget package restore.
-5. Open **Test Explorer** and click "Run All" to execute test suite.
-6. Press F5 button on your keyboard to launch the backend in debugging mode and your browser should open `https://localhost:44345/swagger`.
-7. Open `client` folder in VS Code.
-8. In the **Terminal**, execute these 2 commands:
-
+1. [Download and install the .NET Core SDK](https://dotnet.microsoft.com/download)
+    * If you don't have `localdb` available on your system, [Download and install SQL Server Express](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb)
+    * NOTE: We will remove the `localdb` requirement in a future PR
+2. Open a terminal such as **PowerShell**, **Command Prompt**, or **bash** and navigate to the `service` folder
+3. Run the following `dotnet` commands:
+```sh
+dotnet build
+dotnet run --project Microsoft.DSX.ProjectTemplate.API
 ```
+3. Open your browser to: `https://localhost:44345/swagger`.
+4. In another terminal, navigate to the `client` folder and run the following `npm` commands:
+```sh
 npm install
 npm start
 ```
-
-9. The webpack dev server should host the frontend and your browser should open `http://localhost:3000`.
+5. The webpack dev server hosts the front-end and your browser will open to: `http://localhost:3000`
 
 # Adding an Entity Framework Core migration
 
 1. Open a command prompt in the **Microsoft.DSX.ProjectTemplate.Data** folder.
-2. `dotnet ef migrations add <NAME OF MIGRATION>`
+2. `dotnet tool install --global dotnet-ef`
+3. `dotnet ef migrations add <NAME OF MIGRATION>`
 
 # Removing the latest Entity Framework Core migration
 
 1. Open a command prompt in the **Microsoft.DSX.ProjectTemplate.Data** folder.
 2. `dotnet ef migrations remove`
+
+# To-Do
+
+1. Migrate to MSAL.js
+2. Include Authentication and Authorization logic
+3. Add Docker file
+4. Move away from localdb
+5. Create a CLI setup wizard
 
 # Contributing
 

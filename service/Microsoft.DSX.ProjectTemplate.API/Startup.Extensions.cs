@@ -76,7 +76,7 @@ namespace Microsoft.DSX.ProjectTemplate.API
                           .AllowAnyOrigin()
                           .AllowAnyMethod()
                           .AllowAnyHeader();
-                    }); 
+                    });
             });
         }
 

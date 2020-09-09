@@ -43,15 +43,12 @@ namespace Microsoft.DSX.ProjectTemplate.API
         {
             return Host
                 .CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
         }
 
         private static void RunDatabaseMigrations(IHost host, ILogger logger)
         {
-            logger.LogInformation($"Running database migrations.");
+            logger.LogInformation("Running database migrations.");
 
             using (var serviceScope = host.Services.CreateScope())
             {
@@ -59,7 +56,7 @@ namespace Microsoft.DSX.ProjectTemplate.API
                 context.Database.Migrate();
             }
 
-            logger.LogInformation($"Completed database migrations.");
+            logger.LogInformation("Completed database migrations.");
         }
     }
 }
