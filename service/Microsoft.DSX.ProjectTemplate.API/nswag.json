@@ -1,5 +1,5 @@
 ﻿{
-  "runtime": "NetCore31",
+  "runtime": "Net50",
   "defaultVariables": null,
   "documentGenerator": {
     "aspNetCoreToOpenApi": {
@@ -7,7 +7,7 @@
       "msBuildProjectExtensionsPath": null,
       "configuration": "$(Configuration)",
       "runtime": null,
-      "targetFramework": "netcoreapp3.1",
+      "targetFramework": "net5.0",
       "noBuild": true,
       "verbose": true,
       "workingDirectory": null,
@@ -30,7 +30,7 @@
       "serviceHost": null,
       "serviceBasePath": null,
       "serviceSchemes": [],
-      "infoTitle": "My Title",
+      "infoTitle": "DSX Project Template",
       "infoDescription": null,
       "infoVersion": "1.0.0",
       "documentTemplate": null,
