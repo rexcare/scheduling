@@ -25,7 +25,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Unit
 
         protected Mock<IMediator> MockMediator { get; set; } = new Mock<IMediator>();
 
-        protected IMapper Mapper => new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfile>()).CreateMapper();
+        protected static IMapper Mapper => new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfile>()).CreateMapper();
 
         protected Mock<IAuthorizationService> MockAuthorizationService { get; set; } = new Mock<IAuthorizationService>();
 

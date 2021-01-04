@@ -21,7 +21,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Integration.Group
             var dto = GetGroupDto();
 
             // Act
-            var response = await Client.PostAsJsonAsync("/api/groups", dto);
+            using var response = await Client.PostAsJsonAsync("/api/groups", dto);
 
             // Assert
             var result = await EnsureObject<GroupDto>(response);
@@ -42,7 +42,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Integration.Group
             dto.Name = name;
 
             // Act
-            var response = await Client.PostAsJsonAsync("/api/groups", dto);
+            using var response = await Client.PostAsJsonAsync("/api/groups", dto);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -56,7 +56,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Integration.Group
             dto.Name = RandomFactory.GetAlphanumericString(Constants.MaximumLengths.StringColumn + 1);
 
             // Act
-            var response = await Client.PostAsJsonAsync("/api/groups", dto);
+            using var response = await Client.PostAsJsonAsync("/api/groups", dto);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -67,15 +67,12 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Integration.Group
         {
             // Arrange
             Data.Models.Group randomGroup = null;
-            ServiceProvider.ExecuteWithDbScope(db =>
-            {
-                randomGroup = SeedHelper.GetRandomGroup(db);
-            });
+            ServiceProvider.ExecuteWithDbScope(db => randomGroup = SeedHelper.GetRandomGroup(db));
             var dto = GetGroupDto();
             dto.Name = randomGroup.Name;
 
             // Act
-            var response = await Client.PostAsJsonAsync("/api/groups", dto);
+            using var response = await Client.PostAsJsonAsync("/api/groups", dto);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -88,7 +85,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Integration.Group
             var dto = GetGroupDto();
 
             // Act
-            var response = await Client.PostAsJsonAsync("/api/groups", dto);
+            using var response = await Client.PostAsJsonAsync("/api/groups", dto);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);

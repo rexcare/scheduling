@@ -1,5 +1,4 @@
 ﻿using Microsoft.DSX.ProjectTemplate.Data;
-using Microsoft.DSX.ProjectTemplate.Data.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -42,11 +41,10 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Infrastructure
         /// <param name="func">The delegate <see cref="Func{T, TResult}"/> to execute with the scoped <see cref="ProjectTemplateDbContext"/></param>
         public static async Task<TResult> ExecuteWithDbScope<TResult>(this IServiceProvider provider, Func<ProjectTemplateDbContext, Task<TResult>> func)
         {
-            using (IServiceScope scope = provider.CreateScope())
-            {
-                ProjectTemplateDbContext db = scope.ServiceProvider.GetRequiredService<ProjectTemplateDbContext>();
-                return await func.Invoke(db).ConfigureAwait(false);
-            }
+            using IServiceScope scope = provider.CreateScope();
+            ProjectTemplateDbContext db = scope.ServiceProvider.GetRequiredService<ProjectTemplateDbContext>();
+
+            return await func.Invoke(db).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -56,11 +54,10 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Infrastructure
         /// <param name="action">The delegate <see cref="Action"/> to execute with the scoped <see cref="ProjectTemplateDbContext"/></param>
         public static void ExecuteWithDbScope(this IServiceProvider provider, Action<ProjectTemplateDbContext> action)
         {
-            using (IServiceScope scope = provider.CreateScope())
-            {
-                ProjectTemplateDbContext db = scope.ServiceProvider.GetRequiredService<ProjectTemplateDbContext>();
-                action.Invoke(db);
-            }
+            using IServiceScope scope = provider.CreateScope();
+            ProjectTemplateDbContext db = scope.ServiceProvider.GetRequiredService<ProjectTemplateDbContext>();
+
+            action.Invoke(db);
         }
     }
 }

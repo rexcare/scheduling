@@ -16,7 +16,7 @@
         public string InnerExceptionMessage { get; set; }
 
         /// <summary>
-        /// This property is only available in <code>local</code> and <code>dev</code> environments.
+        /// This property is only available in <c>local</c> and <c>dev</c> environments.
         /// </summary>
         public string StackTrace { get; set; }
     }

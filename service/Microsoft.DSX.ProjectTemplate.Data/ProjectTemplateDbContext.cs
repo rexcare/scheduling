@@ -34,13 +34,13 @@ namespace Microsoft.DSX.ProjectTemplate.Data
             return base.SaveChanges(acceptAllChangesOnSuccess);
         }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             SetupAuditTrail();
             return base.SaveChangesAsync(cancellationToken);
         }
 
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             SetupAuditTrail();
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
@@ -80,13 +80,13 @@ namespace Microsoft.DSX.ProjectTemplate.Data
             }
         }
 
-        private void ConfigureRelationships(ModelBuilder modelBuilder)
+        private static void ConfigureRelationships(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Library>()
                 .OwnsOne(lib => lib.Address);
         }
 
-        private void ConfigurePropertyConversion(ModelBuilder modelBuilder)
+        private static void ConfigurePropertyConversion(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
                 .Property(b => b.Metadata)
@@ -95,7 +95,7 @@ namespace Microsoft.DSX.ProjectTemplate.Data
                     v => JsonConvert.DeserializeObject<Dictionary<string, string>>(v));
         }
 
-        private void ConfigureSeedData(ModelBuilder modelBuilder)
+        private static void ConfigureSeedData(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Group>()
                 .HasData(
@@ -120,7 +120,7 @@ namespace Microsoft.DSX.ProjectTemplate.Data
                 );
         }
 
-        private void ConfigureIndexes(ModelBuilder modelBuilder)
+        private static void ConfigureIndexes(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Group>()
                 .HasIndex(x => x.Name)

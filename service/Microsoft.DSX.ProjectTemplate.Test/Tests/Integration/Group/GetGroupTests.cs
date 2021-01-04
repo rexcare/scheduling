@@ -3,6 +3,7 @@ using Microsoft.DSX.ProjectTemplate.Data.DTOs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Integration.Group
@@ -17,7 +18,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Integration.Group
             // Arrange
 
             // Act
-            var response = await Client.GetAsync("/api/groups");
+            using var response = await Client.GetAsync("/api/groups");
 
             // Assert
             var result = await EnsureObject<IEnumerable<GroupDto>>(response);
@@ -31,7 +32,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Integration.Group
             // Arrange
 
             // Act
-            var response = await Client.GetAsync($"/api/groups/{groupId}");
+            using var response = await Client.GetAsync($"/api/groups/{groupId}");
 
             // Assert
             var result = await EnsureObject<GroupDto>(response);
@@ -47,7 +48,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Integration.Group
             // Arrange
 
             // Act
-            var response = await Client.GetAsync($"/api/groups/{groupId}");
+            using var response = await Client.GetAsync($"/api/groups/{groupId}");
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -60,7 +61,8 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Integration.Group
             // Arrange
 
             // Act
-            var response = await Client.GetAsync($"/api/groups/{groupId}");
+            // FIXME: hitting an unknown content stream exception, using workaround - https://stackoverflow.com/a/65532357/1448448
+            using var response = await Client.GetAsync($"/api/groups/{groupId}", HttpCompletionOption.ResponseHeadersRead);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);

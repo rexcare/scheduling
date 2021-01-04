@@ -20,8 +20,7 @@ namespace Microsoft.DSX.ProjectTemplate.API.Controllers
         /// Initializes a new instance of the <see cref="BaseController"/> class.
         /// </summary>
         /// <param name="mediator">Mediator instance from dependency injection.</param>
-        protected BaseController(IMediator mediator)
-            : base()
+        protected BaseController(IMediator mediator) : base()
         {
             Mediator = mediator;
         }

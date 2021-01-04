@@ -5,7 +5,7 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Integration.Group
 {
     public abstract class BaseGroupTest : BaseIntegrationTest
     {
-        protected GroupDto GetGroupDto()
+        protected static GroupDto GetGroupDto()
         {
             return new GroupDto()
             {

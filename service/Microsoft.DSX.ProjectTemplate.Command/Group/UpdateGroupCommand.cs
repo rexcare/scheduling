@@ -39,7 +39,7 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Group
 
             var model = await Database.Groups
                 .Where(x => x.Id == dto.Id)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
 
             if (model == null)
             {
@@ -47,8 +47,7 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Group
             }
 
             // ensure uniqueness of name
-            bool nameAlreadyUsed = await Database.Groups
-                .AnyAsync(e => e.Name.Trim() == dto.Name.Trim()) && dto.Name != (model.Name);
+            bool nameAlreadyUsed = await Database.Groups.AnyAsync(e => e.Name.Trim() == dto.Name.Trim(), cancellationToken) && dto.Name != (model.Name);
             if (nameAlreadyUsed)
             {
                 throw new BadRequestException($"{nameof(dto.Name)} {dto.Name} already used.");
@@ -59,7 +58,7 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Group
 
             Database.Groups.Update(model);
 
-            await Database.SaveChangesAsync();
+            await Database.SaveChangesAsync(cancellationToken);
 
             return Mapper.Map<GroupDto>(model);
         }

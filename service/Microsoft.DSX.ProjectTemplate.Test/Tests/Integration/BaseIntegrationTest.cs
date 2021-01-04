@@ -11,9 +11,9 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Integration
 {
     /// <summary>
     /// Each integration test is truly isolated because the test has private instances of:
-    /// - <see cref="Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory{TEntryPoint}"/>
-    /// - <see cref="Microsoft.AspNetCore.TestHost.TestServer"/>
-    /// - <see cref="Microsoft.EntityFrameworkCore.InMemory"/> database
+    /// - <see cref="AspNetCore.Mvc.Testing.WebApplicationFactory{TEntryPoint}"/>
+    /// - <see cref="AspNetCore.TestHost.TestServer"/>
+    /// - <see cref="EntityFrameworkCore.InMemory"/> database
     /// </summary>
     [TestCategory("Integration")]
     [TestClass]
@@ -54,11 +54,9 @@ namespace Microsoft.DSX.ProjectTemplate.Test.Tests.Integration
         /// <returns>Count of emails sent.</returns>
         protected int GetSentCount()
         {
-            using (IServiceScope scope = ServiceProvider.CreateScope())
-            {
-                var emailService = (FakeEmailService)scope.ServiceProvider.GetRequiredService<IEmailService>();
-                return emailService.GetSentCount();
-            }
+            using IServiceScope scope = ServiceProvider.CreateScope();
+            var emailService = (FakeEmailService)scope.ServiceProvider.GetRequiredService<IEmailService>();
+            return emailService.GetSentCount();
         }
     }
 }

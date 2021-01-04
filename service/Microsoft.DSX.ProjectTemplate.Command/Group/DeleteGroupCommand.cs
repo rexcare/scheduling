@@ -33,8 +33,7 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Group
                 throw new BadRequestException($"A valid {nameof(Data.Models.Group)} Id must be provided.");
             }
 
-            var group = await Database.Groups.FindAsync(request.GroupId);
-
+            var group = await Database.Groups.FindAsync(new object[] { request.GroupId }, cancellationToken);
             if (group == null)
             {
                 throw new EntityNotFoundException($"{nameof(Data.Models.Group)} not found.");
@@ -42,7 +41,7 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Group
 
             Database.Groups.Remove(group);
 
-            await Database.SaveChangesAsync();
+            await Database.SaveChangesAsync(cancellationToken);
 
             Debug.Assert(Database.Groups.Find(group.Id) == null);
 

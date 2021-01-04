@@ -37,7 +37,7 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Group
         {
             return await Database.Groups
                 .Select(x => Mapper.Map<GroupDto>(x))
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
         }
 
         // GET BY ID
@@ -48,9 +48,7 @@ namespace Microsoft.DSX.ProjectTemplate.Command.Group
                 throw new BadRequestException($"A valid {nameof(Data.Models.Group)} Id must be provided.");
             }
 
-            var innerResult = await Database.Groups
-                .FindAsync(request.GroupId);
-
+            var innerResult = await Database.Groups.FindAsync(new object[] { request.GroupId }, cancellationToken);
             if (innerResult == null)
             {
                 throw new EntityNotFoundException($"{nameof(Data.Models.Group)} with Id {request.GroupId} cannot be found.");
