@@ -10,8 +10,8 @@
         "type": "git"
     },
     "dependencies": {
-        "@azure/msal-browser": "^2.24.0",
-        "@azure/msal-react": "^1.4.0",
+        "@azure/msal-browser": "2.24.0",
+        "@azure/msal-react": "1.4.0",
         "@fluentui/react": "7.155.3",
         "@uifabric/fluent-theme": "7.4.3",
         "camelcase": "6.2.0",
