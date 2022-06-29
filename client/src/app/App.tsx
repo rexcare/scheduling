@@ -1,4 +1,4 @@
-import 'office-ui-fabric-react/dist/css/fabric.css';
+import '@uifabric/fluent-theme/node_modules/office-ui-fabric-react/dist/css/fabric.css';
 
 import { IButtonProps, Icon, Image, initializeIcons, Nav, Text } from '@fluentui/react';
 import About from 'app/pages/about/About';
@@ -6,7 +6,7 @@ import Groups from 'app/pages/groups/Groups';
 import Home from 'app/pages/home/Home';
 import msftLogo from 'app/static/msftLogo.png';
 import React from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 import * as serviceWorker from '../serviceWorker';
 import styles from './App.module.scss';
@@ -53,9 +53,11 @@ const App: React.FC = () => {
                             />
                         </div>
                         <div className="ms-Grid-col ms-sm12 ms-lg8 msxl-10">
-                            <Route path="/" exact component={Home} />
-                            <Route path="/about" component={About} />
-                            <Route path="/groups" component={Groups} />
+                            <Routes >
+                                <Route path="/" element={<Home />} />
+                                <Route path="/about" element={<About />} />
+                                <Route path="/groups" element={<Groups />} />
+                            </Routes>
                         </div>
                     </div>
                 </div>
