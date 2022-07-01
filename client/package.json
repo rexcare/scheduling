@@ -10,6 +10,8 @@
         "type": "git"
     },
     "dependencies": {
+        "@azure/msal-browser": "2.24.0",
+        "@azure/msal-react": "1.4.0",
         "@fluentui/react": "8.67.4",
         "@uifabric/fluent-theme": "7.6.27",
         "camelcase": "6.3.0",
@@ -17,7 +19,6 @@
         "dotenv-expand": "5.1.0",
         "fs-extra": "10.1.0",
         "react": "18.1.0",
-        "react-adal": "0.5.1",
         "react-app-polyfill": "3.0.0",
         "react-dom": "18.1.0",
         "react-redux": "8.0.1",
@@ -109,7 +110,6 @@
         "@types/node": "17.0.35",
         "@types/node-fetch": "^2.6.1",
         "@types/react": "18.0.9",
-        "@types/react-adal": "^0.5.0",
         "@types/react-dom": "18.0.3",
         "@types/react-redux": "^7.1.24",
         "@types/react-router-dom": "^5.3.3",
