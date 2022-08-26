@@ -16,7 +16,6 @@ RUN dotnet build
 RUN dotnet test --no-build
 
 # setup frontend
-#FROM node:16 AS client-build
 FROM node:16@sha256:bf1609ac718dda03940e2be4deae1704fb77cd6de2bed8bf91d4bbbc9e88b497 AS client-build
 ARG APP_ENV
 RUN echo APP_ENV = ${APP_ENV}
