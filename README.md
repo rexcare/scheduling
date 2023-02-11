@@ -49,12 +49,14 @@ npm start
 2. `dotnet ef migrations remove`
 
 # To-Do
-
-1. Migrate to MSAL.js
-2. Include Authentication and Authorization logic
-3. Update dockerfile
-4. Move away from localdb
-5. Create a CLI setup wizard
+### Client
+- No current items
+### Service
+- Include `Authentication` and `Authorization` logic
+- Move away from `localdb`
+- Implement `ApiConventions`
+### Miscellaneous
+- Create a CLI setup wizard
 
 # Contributing
 
